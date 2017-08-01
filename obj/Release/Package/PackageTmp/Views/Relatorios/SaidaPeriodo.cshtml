@@ -1,0 +1,123 @@
+﻿@model PagedList.IPagedList<SistemaIgreja.Models.SAIDA>
+
+@{ ViewBag.Title = "SaidaPeriodo";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="panel panel-default">
+    <div class="panel-heading" align="center"><h4><b>Relatório Débito De: @ViewBag.dataInicial á @ViewBag.dataFinal</b></h4></div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+
+                    <tr>
+
+                        <th>Tipo </th>
+
+                        <th>Valor</th>
+
+                        <th>Data</th>
+
+                        <th>Observaçaõ</th>
+
+
+
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td> @Html.DisplayFor(modelItem => item.TIPO_SAIDA.TIPO) </td>
+                            <td> @Html.DisplayFor(modelItem => item.valor) </td>
+                            <td> @Html.DisplayFor(modelItem => item.data_saida) </td>
+                            <td> @Html.DisplayFor(modelItem => item.observacao) </td>
+                        </tr>
+
+
+                    }
+
+
+
+
+                    <tr>
+
+                        <th></th>
+
+                        <th></th>
+
+
+
+                        <th>Total Geral:</th>
+
+                        <th>@Model.Sum(t => t.valor)</th>
+
+                        <th></th>
+
+                        <th></th>
+
+                    </tr>
+
+                    <tr>
+
+                        <td><b>@Model.Count registos de @Model.TotalItemCount</b></td>
+
+                        <td>@Html.ActionLink("GERAR PDF", "SaidaPeriodo", new { gerarPDF = true, dataInicial = ViewBag.dataInicial, dataFinal = ViewBag.dataFinal })</td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        @{
+            if (Model.TotalItemCount != Model.Count)
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+                        @if (Model.HasPreviousPage)
+                        {
+                            @Html.ActionLink("<<", "SaidaPeriodo", new
+                       {
+                           pagina = 1,
+                           sortOrder = ViewBag.CurrentSort,
+                           currentFilter = ViewBag.CurrentFilter,
+                           dataInicial = ViewBag.dataInicial,
+                           dataFinal = @ViewBag.dataFinal
+                       })
+                            @Html.Raw(" ");
+                            @Html.ActionLink("< Anterior", "SaidaPeriodo", new
+                       {
+                           pagina = Model.PageNumber - 1,
+                           sortOrder = ViewBag.CurrentSort,
+                           currentFilter = ViewBag.CurrentFilter,
+                           dataInicial = ViewBag.dataInicial,
+                           dataFinal = ViewBag.dataFinal
+                       })
+                        }
+                        else
+                        {
+                            @:<<
+                            @Html.Raw(" ");
+                            @:< Anterior
+                            }
+
+                        @if (Model.HasNextPage)
+                        {
+                            @Html.ActionLink("Próxima >", "SaidaPeriodo", new { pagina = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, dataInicial = ViewBag.dataInicial, dataFinal = ViewBag.dataFinal })
+                            @Html.Raw(" ");
+                            @Html.ActionLink(">>", "SaidaPeriodo", new { pagina = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, dataInicial = ViewBag.dataInicial, dataFinal = ViewBag.dataFinal })
+                        }
+                        else
+                        {
+                            @:Próxima >                            @Html.Raw(" ")
+                            @:>>
+                }
+                    </div>
+                </div>           }       }
+
+    </div>
+
+</div>

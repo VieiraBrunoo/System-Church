@@ -1,0 +1,50 @@
+﻿@model SistemaIgreja.Models.ENTRADA
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ENTRADA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO_ENTRADA.TIPO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_ENTRADA.TIPO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.valor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_entrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_entrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.observao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.observao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.cod_entrada }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

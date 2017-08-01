@@ -1,0 +1,58 @@
+﻿@model SistemaIgreja.Models.CELULA
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 align="center">Excluir Célula</h2>
+
+<h3>Tem Certeza Que Deseja Excluir a Célula Abaixo?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Dia da Semana
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DIA_SEMANA.NOME_DIA)
+        </dd>
+
+        <dt>
+            Nome do Líder
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DISCIPULO.NOME)
+        </dd>
+
+        <dt>
+            Horario
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HORARIO_CELULA.HORARIO)
+        </dd>
+
+        <dt>
+            Lugar (Bairro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LUGAR)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-danger" />
+            <br />
+            @Html.ActionLink("Voltar para a Lista de Células", "Index", null, new { @class = "btn btn-info" })
+        </div>
+    }
+</div>

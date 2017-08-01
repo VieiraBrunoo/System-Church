@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title  Church System </title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Church System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+
+
+                @if (Request.IsAuthenticated)
+                {
+
+
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Cadastros
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Discipulos", "Create", "Discipulos")</li>
+                                <li class="nav-divider"></li>
+                                <li>@Html.ActionLink("Células", "Create", "Celulas")</li>
+
+
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Lançamentos
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Entradas", "Create", "Entradas")</li>
+                                <li class="nav-divider"></li>
+                                <li>@Html.ActionLink("Saidas", "Create", "Saidas")</li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Visualizar
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Discipulos Cadastrados", "Index", "Discipulos")</li>
+                                <li class="nav-divider"></li>
+                                <li>@Html.ActionLink("Células Cadastradas", "Index", "Celulas")</li>
+                                <li class="nav-divider"></li>
+                                <li>@Html.ActionLink("Entradas Cadastradas", "Index", "Entradas")</li>
+                                <li class="nav-divider"></li>
+                                <li>@Html.ActionLink("Saidas  Cadastradas", "Index", "Saidas")</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Relatorios
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Células Por Lider/Lugar/Dia", "Celula", "Relatorios")</li>
+                                <li class="nav-divider"></li>
+
+                                <li>@Html.ActionLink("Equipe Do Discipulo", "RelaDoze", "Relatorios")</li>
+                                <li class="nav-divider"></li>
+                                <li>@Html.ActionLink("Crédito Por Periodo", "FormVendasPorPedido", "Relatorios")</li>
+                                <li class="nav-divider"></li>
+                                <li>@Html.ActionLink("Débito Por Periodo", "SaidaPorPeriodo", "Relatorios")</li>
+
+                            </ul>
+                        </li>
+                    </ul>
+
+
+                    using (Html.BeginForm("LogOff", "Conta", FormMethod.Post, new { id = "logoffForm" }))
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#">Olá @User.Identity.Name</a></li>
+                            <li><a href="javascript:document.getElementById('logoffForm').submit()">Sair</a></li>
+                        </ul>
+                    }
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Login", "Login", "Conta")</li>
+                    </ul>
+                }
+
+
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Church System</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,106 @@
+﻿@model SistemaIgreja.Models.DISCIPULO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DISCIPULO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DISCIPULO2.NOME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DISCIPULO2.NOME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ESCOLA_LIDERES1.OPCAO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ESCOLA_LIDERES1.OPCAO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FEZ_BATISMO.OPCAO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FEZ_BATISMO.OPCAO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FEZ_ENCONTRO.OPCAO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FEZ_ENCONTRO.OPCAO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SEXO1.NOME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SEXO1.NOME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NOME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDADE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDADE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DATA_NASC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATA_NASC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMAIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ENDERECO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ENDERECO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TELEFONE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TELEFONE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_DISCIPULO }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

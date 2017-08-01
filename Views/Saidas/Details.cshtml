@@ -1,0 +1,50 @@
+﻿@model SistemaIgreja.Models.SAIDA
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SAIDA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO_SAIDA.TIPO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_SAIDA.TIPO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.valor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_saida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_saida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.observacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.observacao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.cod_saida }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

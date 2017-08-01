@@ -1,0 +1,58 @@
+﻿@model SistemaIgreja.Models.SAIDA
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 align="center">Extornar Débito</h2>
+
+<h3>Tem Certeza Que Deseja Extornar o Débito Abaixo?</h3>
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tipo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_SAIDA.TIPO)
+        </dd>
+
+        <dt>
+            Valor
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.valor)
+        </dd>
+
+        <dt>
+           Data
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_saida)
+        </dd>
+
+        <dt>
+            Observação
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.observacao)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Extornar" class="btn btn-danger" /> 
+            <br />
+
+            @Html.ActionLink("Voltar Para Lista de Débitos", "Index",null,new {@class="btn btn-info" })
+        </div>
+    }
+</div>

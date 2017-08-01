@@ -1,0 +1,50 @@
+﻿@model SistemaIgreja.Models.CELULA
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CELULA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DIA_SEMANA.NOME_DIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DIA_SEMANA.NOME_DIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DISCIPULO.NOME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DISCIPULO.NOME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HORARIO_CELULA.HORARIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HORARIO_CELULA.HORARIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LUGAR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LUGAR)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_CELULA }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

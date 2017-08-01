@@ -1,0 +1,116 @@
+﻿@model SistemaIgreja.Models.DISCIPULO
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 align="center">Excluir Discipulo</h2>
+
+<h3>Tem Certeza Que Deseja Excluir o Discipulo Abaixo?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nome
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DISCIPULO2.NOME)
+        </dd>
+
+        <dt>
+            Escola de Lideres
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ESCOLA_LIDERES1.OPCAO)
+        </dd>
+
+        <dt>
+            Batizado
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FEZ_BATISMO.OPCAO)
+        </dd>
+
+        <dt>
+            Encontro
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FEZ_ENCONTRO.OPCAO)
+        </dd>
+
+        <dt>
+            Sexo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SEXO1.NOME)
+        </dd>
+
+        <dt>
+            Discipulador
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOME)
+        </dd>
+
+        <dt>
+            Idade
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDADE)
+        </dd>
+
+        <dt>
+            Data Nasc
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATA_NASC)
+        </dd>
+
+        <dt>
+            Email
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMAIL)
+        </dd>
+
+        <dt>
+            Endereço
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ENDERECO)
+        </dd>
+
+        <dt>
+            Telefone
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TELEFONE)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-danger" />
+            <br />
+            <br />
+
+            @Html.ActionLink("Voltar Para a Lista de Discipulos", "Index", null, new { @class = "btn btn-info" })
+        </div>
+    }
+</div>

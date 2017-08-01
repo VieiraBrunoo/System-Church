@@ -1,0 +1,135 @@
+﻿@model PagedList.IPagedList<SistemaIgreja.Models.DISCIPULO>
+@{
+    ViewBag.Title = "DiscEquipe";
+}
+
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading" align="center"><h4><b>Relatório Equipe : @ViewBag.Nome </b></h4></div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped">
+
+                    <tr>
+
+                        <th>Nome</th>
+
+                        <th>Idade</th>
+
+                        <th>Telefone</th>
+
+                        <th>Endereco</th>
+
+                        <th>Escola Lid</th>
+
+                        <th> Batizado</th>
+
+                        <th>Encontro</th>
+
+
+
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td> @Html.DisplayFor(modelItem => item.NOME) </td>
+                            <td> @Html.DisplayFor(modelItem => item.IDADE) </td>
+                            <td> @Html.DisplayFor(modelItem => item.TELEFONE) </td>
+                            <td> @Html.DisplayFor(modelItem => item.ENDERECO) </td>
+                            <td> @Html.DisplayFor(modelItem => item.ESCOLA_LIDERES1.OPCAO) </td>
+                            <td> @Html.DisplayFor(modelItem => item.FEZ_BATISMO.OPCAO) </td>
+                            <td> @Html.DisplayFor(modelItem => item.FEZ_ENCONTRO.OPCAO) </td>
+                        </tr>
+
+
+                    }
+
+
+
+
+                    <tr>
+
+                        <th></th>
+
+                        <th></th>
+
+
+
+                        <th>Total Discipulos:</th>
+
+                        <th>@Model.Count()</th>
+
+                        <th></th>
+
+                        <th></th>
+
+                    </tr>
+
+                    <tr>
+
+                        <td><b>@Model.Count registos de @Model.TotalItemCount</b></td>
+
+                        <td>@Html.ActionLink("GERAR PDF", "DiscEquipe", new { gerarPDF = true, Nome = ViewBag.Nome })</td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        @{
+            if (Model.TotalItemCount != Model.Count)
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+                        @if (Model.HasPreviousPage)
+                        {
+                            @Html.ActionLink("<<", "DiscEquipe", new
+                       {
+                           pagina = 1,
+                           sortOrder = ViewBag.CurrentSort,
+                           currentFilter = ViewBag.CurrentFilter,
+                           Nome = ViewBag.Nome,
+
+                       })
+                            @Html.Raw(" ");
+                            @Html.ActionLink("< Anterior", "DiscEquipe", new
+                       {
+                           pagina = Model.PageNumber - 1,
+                           sortOrder = ViewBag.CurrentSort,
+                           currentFilter = ViewBag.CurrentFilter,
+                           Nome = ViewBag.Nome,
+
+                       })
+                        }
+                        else
+                        {
+                            @:<<
+                            @Html.Raw(" ");
+                            @:< Anterior
+                            }
+
+                        @if (Model.HasNextPage)
+                        {
+                            @Html.ActionLink("Próxima >", "DiscEquipe", new { pagina = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, Nome = ViewBag.Nome })
+                            @Html.Raw(" ");
+                            @Html.ActionLink(">>", "RelVendasPorPeriodo", new { pagina = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, Nome = ViewBag.Nome })
+                        }
+                        else
+                        {
+                            @:Próxima >                            @Html.Raw(" ")
+                            @:>>
+                }
+                    </div>
+                </div>           }       }
+
+    </div>
+
+</div>

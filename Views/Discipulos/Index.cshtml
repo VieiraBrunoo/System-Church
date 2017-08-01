@@ -1,0 +1,178 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<SistemaIgreja.Models.DISCIPULO>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 align="center">Lista de Discipulos</h2>
+
+<p>
+    @Html.ActionLink("Adicionar Novo Discipulo", "Create",null, new { @class = "btn btn-success" })
+</p>
+<div id="Pesquisar " align="right">
+    @using (Html.BeginForm("Index","Discipulos", FormMethod.Get))
+    {
+
+        <p>
+
+            Pesquisar: @Html.TextBox("Pesquisa");
+            <input type="submit" value="Buscar" class="btn btn-success" />
+        </p>
+    }
+</div>
+<table class="table table-striped">
+    <tr>
+        <th>
+            Nome
+        </th>
+        <th>
+            Telefone
+        </th>
+
+        <th>
+            Endereço
+        </th>
+        <th>
+            Idade
+        </th>
+        <th>
+            Data Nasc
+        </th>
+        <th>
+            Sexo
+        </th>
+        <th>
+            @Html.ActionLink("Discipulador", "Index", new { sortOrder = ViewBag.DiscipuladorParam })
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Encontro
+        </th>
+        <th>
+            Escola
+        </th>
+        <th>
+            Batizado
+        </th>
+       
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOME)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.TELEFONE)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ENDERECO)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.IDADE)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DATA_NASC)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.SEXO1.NOME)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DISCIPULO2.NOME)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.EMAIL)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FEZ_ENCONTRO.OPCAO)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ESCOLA_LIDERES1.OPCAO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FEZ_BATISMO.OPCAO)
+            </td>
+      
+           
+                   
+
+           
+           
+           
+           
+           
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID_DISCIPULO }, new { @class = "btn btn-primary" })
+
+                @Html.ActionLink("Excluir", "Delete", new { id = item.ID_DISCIPULO }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div id=" total" align="right">
+    <a href="#" class="Teste" align="rigth"> Total de Discipulos</a>
+    <br />
+
+
+
+</div>
+
+<div id="result1" align="right"></div>
+
+<script src="@Url.Content("~/Scripts/jquery-1.10.2.js")" type="text/javascript">
+
+</script>
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+        $('.Teste').click(function () {
+
+
+            $.ajax({
+
+
+                type:'Get',
+                url: '@Url.Action("Total","Discipulos")',
+                success: function (result) {
+                    $('#result1').html(result);
+                }
+
+
+            })
+        });
+
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+Pagina @(Model.PageCount < Model.PageCount ? 0 : Model.PageNumber) de @Model.PageCount
+@Html.PagedListPager(Model, Page=>Url.Action("Index", new { Page,sortOder=ViewBag.CurrentSort,currentFilter = ViewBag.CurrentFilter}))

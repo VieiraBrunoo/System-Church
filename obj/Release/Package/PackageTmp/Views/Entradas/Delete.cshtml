@@ -1,0 +1,58 @@
+﻿@model SistemaIgreja.Models.ENTRADA
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 align="center">Extornar Crédito</h2>
+
+<h3>Tem Certeza Que Deseja Extornar o Crédito Abaixo?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tipo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_ENTRADA.TIPO)
+        </dd>
+
+        <dt>
+            Valor
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.valor)
+        </dd>
+
+        <dt>
+            Data
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_entrada)
+        </dd>
+
+        <dt>
+            Observação
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.observao)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Extornar" class="btn btn-danger" />
+            <br />
+            @Html.ActionLink("Voltar Para a Lista de Créditos", "Index", null, new { @class = "btn btn-info" })
+        </div>
+    }
+</div>

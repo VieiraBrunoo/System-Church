@@ -1,0 +1,123 @@
+﻿@model PagedList.IPagedList<SistemaIgreja.Models.CELULA>
+
+@{ ViewBag.Title = "SaidaPeriodo";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="panel panel-default">
+    <div class="panel-heading" align="center"><h4><b>Relatório Célula: @ViewBag.Pesquisa</b></h4></div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped">
+
+                    <tr>
+
+                        <th>Dia </th>
+
+                        <th>Nome Lider</th>
+
+                        <th>Horario</th>
+
+                        <th>Local (Bairro)</th>
+
+
+
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td> @Html.DisplayFor(modelItem => item.DIA_SEMANA.NOME_DIA) </td>
+                            <td> @Html.DisplayFor(modelItem => item.DISCIPULO.NOME) </td>
+                            <td> @Html.DisplayFor(modelItem => item.HORARIO_CELULA.HORARIO) </td>
+                            <td> @Html.DisplayFor(modelItem => item.LUGAR) </td>
+                        </tr>
+
+
+                    }
+
+
+
+
+                    <tr>
+
+                        <th></th>
+
+                        <th></th>
+
+
+
+                        <th>Total de Células:</th>
+
+                        <th>@Model.Count()</th>
+
+                        <th></th>
+
+                        <th></th>
+
+                    </tr>
+
+                    <tr>
+
+                        <td><b>@Model.Count registos de @Model.TotalItemCount</b></td>
+
+                        <td>@Html.ActionLink("GERAR PDF", "Pdf", new { gerarPDF = true, Pesquisa = ViewBag.Pesquisa})</td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        @{
+            if (Model.TotalItemCount != Model.Count)
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+                        @if (Model.HasPreviousPage)
+                        {
+                            @Html.ActionLink("<<", "Pdf", new
+                       {
+                           pagina = 1,
+                           sortOrder = ViewBag.CurrentSort,
+                           currentFilter = ViewBag.CurrentFilter,
+                           Pesquisa = ViewBag.Pesquisa,
+                          
+                       })
+                            @Html.Raw(" ");
+                            @Html.ActionLink("< Anterior", "Pdf", new
+                       {
+                           pagina = Model.PageNumber - 1,
+                           sortOrder = ViewBag.CurrentSort,
+                           currentFilter = ViewBag.CurrentFilter,
+                           Pesquisa = ViewBag.Pesquisa,
+                          
+                       })
+                        }
+                        else
+                        {
+                            @:<<
+                            @Html.Raw(" ");
+                            @:< Anterior
+                            }
+
+                        @if (Model.HasNextPage)
+                        {
+                            @Html.ActionLink("Próxima >", "Pdf", new { pagina = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, Pesquisa = ViewBag.Pesquisa})
+                            @Html.Raw(" ");
+                            @Html.ActionLink(">>", "Pdf", new { pagina = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter,Pesquisa = ViewBag.Pesquisa})
+                        }
+                        else
+                        {
+                            @:Próxima >                            @Html.Raw(" ")
+                            @:>>
+                }
+                    </div>
+                </div>           }       }
+
+    </div>
+
+</div>

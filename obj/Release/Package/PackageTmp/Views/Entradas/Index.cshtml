@@ -1,0 +1,94 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<SistemaIgreja.Models.ENTRADA>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 align="center">Lista de Créditos</h2>
+
+<p>
+    @Html.ActionLink("Lançar Novo Crédito", "Create", null, new { @class = "btn btn-success" })
+</p>
+
+
+<div id=" saldo" align="right">
+    <a href="#" class="Teste" align="rigth">Ver Saldo</a>
+    <br />
+
+
+
+</div>
+
+<div id="result1" align="right"></div>
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.ActionLink("Tipo", "Index", new { sortOrder = ViewBag.TipoParam })
+        </th>
+        <th>
+            Valor
+        </th>
+        <th>
+            @Html.ActionLink("Data", "Index", new { sortOrder = ViewBag.DateParm })
+        </th>
+        <th>
+            Observação
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TIPO_ENTRADA.TIPO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.valor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.data_entrada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.observao)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.cod_entrada }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Extornar", "Delete", new { id = item.cod_entrada }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+<script src="@Url.Content("~/Scripts/jquery-1.10.2.js")" type="text/javascript">
+
+</script>
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+        $('.Teste').click(function () {
+
+
+            $.ajax({
+
+
+                type:'Get',
+                url: '@Url.Action("SaldoCaixa","Entradas")',
+                success: function (result) {
+                    $('#result1').html(result);
+                }
+
+
+            })
+        });
+
+    });
+</script>
+
+Pagina @(Model.PageCount < Model.PageCount ? 0 : Model.PageNumber) de @Model.PageCount
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, sortOder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
